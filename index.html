@@ -2,39 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Select Event Dates</title>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      padding: 2em;
+      margin: 0;
+      padding: 1em;
       background: #f7f7f7;
+      width: 100%;
+      max-width: 100%;
     }
+
     h2 {
       color: #003f7f;
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 1em;
     }
+
     label {
       display: block;
       margin-bottom: 0.5em;
       font-weight: bold;
+      font-size: 1em;
     }
+
     input, button {
       width: 100%;
-      padding: 0.6em;
+      padding: 0.8em;
       margin-bottom: 1.5em;
       border-radius: 5px;
       border: 1px solid #ccc;
       font-size: 1em;
     }
+
     #submitBtn {
       background-color: #003f7f;
       color: white;
       border: none;
       cursor: pointer;
+      font-weight: bold;
     }
+
     #submitBtn:hover {
       background-color: #002f5f;
+    }
+
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 1.3em;
+      }
+
+      input, button {
+        font-size: 1em;
+        padding: 0.7em;
+      }
     }
   </style>
 </head>
@@ -90,3 +119,4 @@
   </script>
 </body>
 </html>
+
