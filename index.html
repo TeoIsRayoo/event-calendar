@@ -84,7 +84,7 @@
       border-color: #002a5c;
     }
 
-    /* 📱 Responzívne pre mobily */
+    /* 🖥 Tablet a menšie obrazovky */
     @media (max-width: 768px) {
       .form-wrapper {
         justify-content: center;
@@ -105,6 +105,15 @@
 
       label {
         font-size: 0.95rem;
+      }
+    }
+
+    /* 📱 Úzke telefóny – dodatočné zúženie */
+    @media (max-width: 480px) {
+      .form-box {
+        margin-left: auto;
+        margin-right: auto;
+        width: calc(100% - 16px); /* 8px odsadenie z oboch strán */
       }
     }
   </style>
