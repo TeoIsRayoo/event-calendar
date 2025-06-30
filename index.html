@@ -2,10 +2,14 @@
 <html lang="sk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -15,21 +19,22 @@
 
     .form-wrapper {
       display: flex;
-      justify-content: flex-start;
-      width: 100%;
+      justify-content: flex-start; /* default pre desktop */
     }
 
     .form-box {
+      background: white;
+      padding: 1.5em;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: none;
-      padding: 0;
-      background: transparent;
+      max-width: 380px;
     }
 
     label {
       font-weight: bold;
-      margin-bottom: 0.5em;
       display: block;
+      margin-bottom: 0.5em;
       color: #003f7f;
     }
 
@@ -39,9 +44,8 @@
       font-size: 1rem;
       border-radius: 8px;
       border: 1px solid #ccc;
-      margin-top: 0.5em;
+      margin-top: 0.4em;
       margin-bottom: 1em;
-      box-sizing: border-box;
     }
 
     button {
@@ -57,7 +61,7 @@
       background-color: #002a5c;
     }
 
-    /* 🔁 Pre mobilné zariadenia – responzívna krabička */
+    /* 🔁 Responzivita pre úzke zariadenia */
     @media (max-width: 768px) {
       .form-wrapper {
         justify-content: center;
@@ -65,11 +69,9 @@
       }
 
       .form-box {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 1.5em;
-        max-width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 1em;
       }
     }
   </style>
