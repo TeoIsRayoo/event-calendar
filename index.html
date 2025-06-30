@@ -15,20 +15,24 @@
       padding: 0;
       font-family: Arial, sans-serif;
       background: transparent;
+      width: 100%;
     }
 
     .form-wrapper {
       display: flex;
-      justify-content: flex-start; /* default pre desktop */
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 0.5em;
     }
 
     .form-box {
       background: white;
-      padding: 1.5em;
+      padding: 1.2em;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 380px;
+      max-width: 360px;
     }
 
     label {
@@ -61,17 +65,21 @@
       background-color: #002a5c;
     }
 
-    /* 🔁 Responzivita pre úzke zariadenia */
-    @media (max-width: 768px) {
-      .form-wrapper {
-        justify-content: center;
+    /* RESPONSIVE FIX for mobile phones */
+    @media (max-width: 480px) {
+      .form-box {
         padding: 1em;
+        border-radius: 8px;
+        box-shadow: none;
       }
 
-      .form-box {
-        box-shadow: none;
-        border-radius: 0;
-        padding: 1em;
+      input, button {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+
+      label {
+        font-size: 0.95rem;
       }
     }
   </style>
