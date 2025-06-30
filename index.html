@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Select Event Dates</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
@@ -12,111 +11,86 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 1em;
-      background: #f7f7f7;
-      width: 100%;
-      max-width: 100%;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: transparent;
+      display: flex;
+      justify-content: center;
     }
 
-    h2 {
-      color: #003f7f;
-      font-size: 1.5em;
-      text-align: center;
-      margin-bottom: 1em;
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+      background: white;
     }
 
     label {
+      font-weight: bold;
       display: block;
       margin-bottom: 0.5em;
-      font-weight: bold;
-      font-size: 1em;
+      color: #003f7f;
     }
 
     input, button {
       width: 100%;
-      padding: 0.8em;
-      margin-bottom: 1.5em;
-      border-radius: 5px;
+      padding: 12px;
+      margin-bottom: 16px;
+      border-radius: 6px;
+      font-size: 1rem;
       border: 1px solid #ccc;
-      font-size: 1em;
     }
 
-    #submitBtn {
+    button {
       background-color: #003f7f;
-      color: white;
+      color: #fff;
       border: none;
       cursor: pointer;
-      font-weight: bold;
     }
 
-    #submitBtn:hover {
-      background-color: #002f5f;
-    }
-
-    @media (max-width: 480px) {
-      h2 {
-        font-size: 1.3em;
-      }
-
-      input, button {
-        font-size: 1em;
-        padding: 0.7em;
-      }
+    button:hover {
+      background-color: #002a5c;
     }
   </style>
 </head>
 <body>
-  <h2>Select Event Dates</h2>
-
-  <!-- Hidden fields populated from external source -->
-  <input type="hidden" id="stewardName" value="">
-  <input type="hidden" id="eventName" value="">
-
-  <label for="datePicker">Dates:</label>
-  <input type="text" id="datePicker" placeholder="Choose the date" readonly>
-
-  <button id="submitBtn">Submit</button>
+  <div class="container">
+    <label for="datePicker">Select Event Dates:</label>
+    <input type="hidden" id="stewardName" value="AUTOMATICKY">
+    <input type="hidden" id="eventName" value="AUTOMATICKY">
+    <input type="text" id="datePicker" placeholder="Choose one or more dates" readonly>
+    <button id="submitBtn">Submit</button>
+  </div>
 
   <script>
-    window.addEventListener("load", function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      document.getElementById("stewardName").value = urlParams.get("meno") || "";
-      document.getElementById("eventName").value = urlParams.get("akcia") || "";
-    });
-
     flatpickr("#datePicker", {
       mode: "multiple",
       dateFormat: "d.m.Y",
-      locale: "en"
+      locale: "sk"
     });
 
     document.getElementById("submitBtn").addEventListener("click", function () {
       const steward = document.getElementById("stewardName").value;
       const event = document.getElementById("eventName").value;
       const dates = document.getElementById("datePicker").value.split(", ");
-      if (dates.length === 0 || !event || !steward) {
-        alert("Missing data: steward name, event name or dates.");
+
+      if (!dates.length || !steward || !event) {
+        alert("Vyplň všetky údaje.");
         return;
       }
 
       dates.forEach(date => {
-        fetch("https://script.google.com/macros/s/AKfycbxSrNCOGSoGVmQ1FaEDoX_1bmn6K4DVqYdfcSX92KJiyKVcSzBpYkp1wlsXPG6d_I04NQ/exec", {
+        fetch("URL_TVOJHO_APPS_SCRIPT_WEBAPP", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            datum: date,
-            steward: steward,
-            akcia: event
-          })
+          body: JSON.stringify({ datum: date, steward: steward, akcia: event })
         });
       });
 
-      alert("Dates have been successfully submitted.");
+      alert("Dátumy boli odoslané.");
       document.getElementById("datePicker").value = "";
     });
   </script>
 </body>
 </html>
-
