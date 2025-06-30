@@ -83,7 +83,14 @@
       border-color: #002a5c;
     }
 
-    /* 🖥 Tablet a bežné obrazovky */
+    /* Kalendár Flatpickr – prispôsobenie */
+    .flatpickr-calendar {
+      z-index: 9999 !important;
+      width: 100% !important;
+      max-width: 360px !important;
+      box-sizing: border-box;
+    }
+
     @media (max-width: 768px) {
       .form-wrapper {
         justify-content: center;
@@ -107,7 +114,7 @@
       }
     }
 
-    /* 📱 Úzke telefóny – skutočne centrovaný box bez useknutia */
+    /* Úzke mobily – centrovaný box a správne zobrazenie kalendára */
     @media (max-width: 480px) {
       .form-wrapper {
         justify-content: center;
@@ -115,12 +122,18 @@
       }
 
       .form-box {
-        width: calc(100% - 32px); /* 16px naľavo + napravo */
+        width: calc(100% - 32px); /* 16px zľava + sprava */
         margin: 0 auto;
         border-radius: 12px;
         padding: 1.2em;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         box-sizing: border-box;
+      }
+
+      .flatpickr-calendar {
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 auto !important;
       }
     }
   </style>
