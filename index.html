@@ -15,19 +15,20 @@
       padding: 0;
       font-family: Arial, sans-serif;
       background: transparent;
+    }
+
+    .form-wrapper {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
+      justify-content: flex-start; /* default pre desktop */
     }
 
     .form-box {
-      width: 100%;
-      max-width: 380px;
       background: white;
       padding: 1.5em;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 380px;
     }
 
     label {
@@ -59,15 +60,31 @@
     button:hover {
       background-color: #002a5c;
     }
+
+    /* 🔁 Responzivita pre úzke zariadenia */
+    @media (max-width: 768px) {
+      .form-wrapper {
+        justify-content: center;
+        padding: 1em;
+      }
+
+      .form-box {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 1em;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="form-box">
-    <label for="datePicker">Select Event Dates:</label>
-    <input type="hidden" id="stewardName" value="AUTOMATICKY" />
-    <input type="hidden" id="eventName" value="AUTOMATICKY" />
-    <input type="text" id="datePicker" placeholder="Choose one or more dates" readonly />
-    <button id="submitBtn">Submit</button>
+  <div class="form-wrapper">
+    <div class="form-box">
+      <label for="datePicker">Select Event Dates:</label>
+      <input type="hidden" id="stewardName" value="AUTOMATICKY" />
+      <input type="hidden" id="eventName" value="AUTOMATICKY" />
+      <input type="text" id="datePicker" placeholder="Choose one or more dates" readonly />
+      <button id="submitBtn">Submit</button>
+    </div>
   </div>
 
   <script>
