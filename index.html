@@ -78,7 +78,7 @@
   <div class="form-wrapper">
     <div class="form-box">
       <label for="datePicker">Select Event Dates:</label>
-      <input type="text" id="datePicker" name="eventDates" placeholder="Choose one or more dates" readonly />
+      <input type="text" id="datePicker" name="visibleDatePicker" placeholder="Choose one or more dates" readonly />
     </div>
   </div>
 
@@ -86,7 +86,17 @@
     flatpickr("#datePicker", {
       mode: "multiple",
       dateFormat: "d.m.Y",
-      locale: "sk"
+      locale: "sk",
+      onChange: function(selectedDates, dateStr) {
+        try {
+          const parentInput = parent.document.querySelector("input[name='eventDates']");
+          if (parentInput) {
+            parentInput.value = dateStr;
+          }
+        } catch (err) {
+          console.error("Nepodarilo sa nastaviť hodnotu do Jotform poľa:", err);
+        }
+      }
     });
   </script>
 </body>
