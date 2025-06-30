@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
   <style>
     * {
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
       background: transparent;
       display: flex;
       justify-content: center;
+      align-items: center;
+      height: 100%;
     }
 
-    .container {
+    .form-box {
       width: 100%;
-      max-width: 420px;
-      padding: 20px;
+      max-width: 380px;
       background: white;
+      padding: 1.5em;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     }
 
     label {
@@ -36,17 +40,20 @@
     input, button {
       width: 100%;
       padding: 12px;
-      margin-bottom: 16px;
-      border-radius: 6px;
       font-size: 1rem;
+      border-radius: 8px;
       border: 1px solid #ccc;
+      margin-top: 0.4em;
+      margin-bottom: 1em;
     }
 
     button {
       background-color: #003f7f;
-      color: #fff;
+      color: white;
       border: none;
+      font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -55,11 +62,11 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="form-box">
     <label for="datePicker">Select Event Dates:</label>
-    <input type="hidden" id="stewardName" value="AUTOMATICKY">
-    <input type="hidden" id="eventName" value="AUTOMATICKY">
-    <input type="text" id="datePicker" placeholder="Choose one or more dates" readonly>
+    <input type="hidden" id="stewardName" value="AUTOMATICKY" />
+    <input type="hidden" id="eventName" value="AUTOMATICKY" />
+    <input type="text" id="datePicker" placeholder="Choose one or more dates" readonly />
     <button id="submitBtn">Submit</button>
   </div>
 
@@ -84,7 +91,11 @@
         fetch("URL_TVOJHO_APPS_SCRIPT_WEBAPP", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ datum: date, steward: steward, akcia: event })
+          body: JSON.stringify({
+            datum: date,
+            steward: steward,
+            akcia: event
+          })
         });
       });
 
