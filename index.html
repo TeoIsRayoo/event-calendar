@@ -77,17 +77,24 @@
 <body>
   <div class="form-wrapper">
     <div class="form-box">
-      <label for="eventDates">Select Event Dates:</label>
-      <!-- 💡 Toto pole Jotform vie spracovať -->
-      <input type="text" id="eventDates" name="eventDates" placeholder="Choose one or more dates" readonly />
+      <label for="eventDatesVisible">Vyber dátumy podujatia:</label>
+      <!-- Tento input vidí používateľ -->
+      <input type="text" id="eventDatesVisible" placeholder="Vyber jeden alebo viac dátumov" readonly />
+      <!-- Tento input posiela do JotFormu / Apps Scriptu -->
+      <input type="hidden" id="eventDates" name="eventDates" />
     </div>
   </div>
 
   <script>
-    flatpickr("#eventDates", {
+    const fp = flatpickr("#eventDatesVisible", {
       mode: "multiple",
-      dateFormat: "d.m.Y",
-      locale: "sk"
+      dateFormat: "d.m.Y",      // zobrazenie pre používateľa
+      locale: "sk",
+      onChange: function(selectedDates, dateStr, instance) {
+        // uložíme do skrytého inputu vo formáte YYYY-MM-DD
+        const isoDates = selectedDates.map(date => instance.formatDate(date, "Y-m-d"));
+        document.getElementById("eventDates").value = isoDates.join(",");
+      }
     });
   </script>
 </body>
